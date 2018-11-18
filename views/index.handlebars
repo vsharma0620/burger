@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/public/assets/css/burger_style.css" type="text/css"/>
+<div class="container">
+    <div class="center" col-sm-12>
+        <img url="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjU5bWWqN3eAhVELn0KHXGHAWsQjRx6BAgBEAU&url=https%3A%2F%2Fwww.lansingstatejournal.com%2Fstory%2Flife%2F2018%2F01%2F09%2Flansing-best-burgers-envie-kewpees-olympic-broil-nip-n-sip-crunchys-peanut-barrel-restaurants%2F942211001%2F&psig=AOvVaw3jcC41MX9JaNv_aMUyqCtR&ust=1542608876614815">
+        <h1>Eat-Da-Burger!</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <br>
+        <h2>Burgers Available to eat!</h2>
+
+        <ul>
+            {{#each burgers}} {{#unless this.devoured}}
+            <li>
+                {{this.id}} {{this.burger_name}}
+
+                <form action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="devoured" value="true">
+                    <button class="btn=primary" type="submit">Devour It!</button>
+                </form>
+            </li>
+            {{/unless}} {{/each}}
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <h2>Burgers that have been eaten!</h2>
+        {{#each burgers}} {{#if this.devoured}}
+        <li>
+            {{this.id}} {{this.burger_name}}
+        </li>
+        {{/if}} {{/each}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="center-col-12">
+        <h2>Add A Burger!</h2>
+
+        <form class="create-update-form" actions="/" method="POST">
+
+            <div class="form-group ">
+                <p>Enter a burger you want to eat. Click the submit button.</p>
+                <input type="text" id="ca" name="burger_name">
+            </div>
+
+            <button class="btn-primary" type="submit">Submit</button>
+
+        </form>
+
+    </div>
+</div>
+</div>
