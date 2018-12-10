@@ -5,40 +5,30 @@ var router = express.Router();
 var burger = require("../models/burger.js");
 
 // Create all our routes and set up logic within those routes where required.
-router.get("/", function(req, res) {
-  burger.all(function(data) {
-    var hbsObject = {
-      burgers: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  });
+router.get("/", function (req, res) {
+  res.redirect("/burgers");
 });
 
-router.post("/", function(req, res) {
-  burger.create(["burger_name", "devour"], [req.body.burger_name, req.body.devour], function() {
-    // Send back the ID of the new quote
-    res.redirect("/");
-  });
-});
-
-router.put("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  console.log("condition", condition);
-
-  burger.update({
-      devour: req.body.devoured
-    },condition, function() {
-     res.redirect("/");
+router.get("/burgers", function (req, res) {
+  burger.all(function (burgerData) {
+    res.render("index", {
+      burger_data: burgerData
     });
+  });
 });
 
-router.delete("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  burger.delete(condition, function() {
+router.post("/burger/create", function (req, res) {
+  burger.create(req.body.burger_name, function (result) {
+    // Send back the ID of the new quote
+    console.log(result);
     res.redirect("/");
+  });
+});
+
+router.put("/burgers/:id", function (req, res) {
+  burger.update(req.params.id, function (result) {
+    console.log(result);
+    res.sendStatus(200);
   });
 });
 // Export routes for server.js to use.
