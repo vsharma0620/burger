@@ -9,7 +9,7 @@ $(docuemnt).ready(function () {
     // Send the PUT request.
     $.ajax({
       method: "PUT",
-      url: "/burgers/" + burger_id
+      url: "/burger/" + burger_id
     }).then(function (data) {
       // Reload the page to get the updated list
       location.reload();
