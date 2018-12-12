@@ -11,4 +11,4 @@ This app was created with:
 - Handlebars
 - ORM
 
-Here is a link to the deployed App: https://dashboard.heroku.com/apps/salty-beach-74650/deploy/heroku-git
+Here is a link to the deployed App: https://salty-beach-74650.herokuapp.com/
